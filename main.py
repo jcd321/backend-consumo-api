@@ -34,7 +34,11 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(lifespan=lifespan)
 
-origins = ["http://localhost:4200", "http://127.0.0.1:4200"]
+origins = [
+    "http://localhost:4200", 
+    "http://127.0.0.1:4200",
+    "https://consumo-api-1.netlify.app"
+]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
