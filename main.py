@@ -24,7 +24,11 @@ from schemas import (
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    Base.metadata.create_all(bind=engine)
+    try:
+        Base.metadata.create_all(bind=engine)
+    except Exception as e:
+        print(f"Database connection error: {e}")
+        # In production, you might want to exit or handle differently
     yield
 
 
